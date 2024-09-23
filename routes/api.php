@@ -3,6 +3,9 @@
 use App\Http\Controllers\Api\AttendanceController;
 use App\Http\Controllers\Api\BookController;
 use App\Http\Controllers\Api\ClassRoomController;
+use App\Http\Controllers\Api\Dashboard\HomeController;
+use App\Http\Controllers\Api\Dashboard\TeacherDashboardController;
+use App\Http\Controllers\Api\EventsController;
 use App\Http\Controllers\Api\Fees\PaymentController;
 use App\Http\Controllers\Api\Fees\FeeProcessController;
 use App\Http\Controllers\Api\Fees\FeesController;
@@ -104,4 +107,13 @@ Route::middleware([LocalizationMiddleware::class])->group(function () {
     // Settings Module
     Route::get('settings', [SettingController::class, "index"]);
     Route::post('settings', [SettingController::class, "updateSettings"]);
+
+    // Events Module
+    Route::resource('events', EventsController::class);
+
+    // Dashboards Module
+    Route::get('home', HomeController::class);
+    Route::get('teacher-dashboard/{teacherId}', [TeacherDashboardController::class, "index"]);
+    Route::get('teacher-dashboard/{teacherId}/get-students', [TeacherDashboardController::class, "getStudents"]);
+    Route::post('teacher-dashboard/attendance-report', [TeacherDashboardController::class, "attendanceReport"]);
 });

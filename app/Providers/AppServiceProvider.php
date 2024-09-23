@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Interfaces\AttendanceRepositoryInterface;
 use App\Interfaces\BookRepositoryInterface;
+use App\Interfaces\EventRepositoryInterface;
 use App\Interfaces\FeeProcessRepositoryInterface;
 use App\Interfaces\FeeRepositoryInterface;
 use App\Interfaces\GraduationRepositoryInterface;
@@ -18,6 +19,7 @@ use App\Interfaces\SubjectRepositoryInterface;
 use App\Interfaces\TeacherRepositoryInterface;
 use App\Repositories\AttendanceRepository;
 use App\Repositories\BookRepository;
+use App\Repositories\EventRepository;
 use App\Repositories\FeeProcessRepository;
 use App\Repositories\FeeRepository;
 use App\Repositories\GraduationRepository;
@@ -54,6 +56,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(QuizRepositoryInterface::class, QuizRepository::class);
         $this->app->bind(QuestionRepositoryInterface::class, QuestionRepository::class);
         $this->app->bind(BookRepositoryInterface::class, BookRepository::class);
+        $this->app->bind(EventRepositoryInterface::class, EventRepository::class);
     }
 
     /**
