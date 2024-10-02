@@ -20,13 +20,15 @@ class AttendanceRepository implements AttendanceRepositoryInterface
             $data = $request->data;
 
             foreach ($data as $student) {
-                Attendance::create([
+                Attendance::updateOrCreate([
+                    "attendance_date" => date("Y-m-d"),
+                    "student_id" => $student['student_id'],
+                ], [
                     "attendance_date" => date("Y-m-d"),
                     "grade_id" => $request->grade_id,
                     "class_room_id" => $request->class_room_id,
                     "section_id" => $request->section_id,
                     "teacher_id" => $request->teacher_id,
-                    "student_id" => $student['student_id'],
                     "attendance_status" => $student['attendance_status'],
                 ]);
             }
